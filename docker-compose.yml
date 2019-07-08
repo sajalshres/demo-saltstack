@@ -1,0 +1,37 @@
+version: '3'
+
+services: 
+  salt-master:
+    container_name: salt-master
+    hostname: salt-master
+    image: sajalshres/demo-saltstack:master
+    networks: 
+      saltnetwork:
+       aliases: 
+        - salt-master
+
+  salt-minion1:
+    container_name: MINION1
+    hostname: MINION1
+    image: sajalshres/demo-saltstack:minion
+    depends_on:
+      - salt-master
+    networks: 
+      saltnetwork:
+       aliases: 
+        - MINION1
+
+  salt-minion2:
+    container_name: MINION2
+    hostname: MINION2
+    image: sajalshres/demo-saltstack:minion
+    depends_on:
+      - salt-master
+    networks: 
+      saltnetwork:
+       aliases: 
+        - MINION2
+
+networks:
+  saltnetwork:
+    driver: bridge

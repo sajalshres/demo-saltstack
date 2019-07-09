@@ -1,4 +1,4 @@
-# Docker Salt Stack
+# Demo Salt Stack
 
 Docker setup to spin up a salt master and two minions for development and testing environment
 

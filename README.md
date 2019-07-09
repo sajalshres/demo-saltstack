@@ -4,7 +4,7 @@ Docker setup to spin up a salt master and two minions for development and testin
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
 
 ## Prerequisites
 
@@ -55,6 +55,26 @@ This command will stop the containser, but will preserver the data they've store
 ```
 docker-compose down
 ```
+
+## Enter the bash of Salt Master:
+
+```
+docker-compose exec salt-master bash
+```
+
+## Execute Command from Master :
+
+Accept all the keys of minions
+```
+salt-key -A
+```
+
+Ping all the minion machines
+```
+salt '*' test.ping
+```
+
+
 
 ## Update Image:
 To pull the latest image, run(With the containers stopped):

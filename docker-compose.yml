@@ -1,36 +1,47 @@
-version: '3'
+version: "3"
 
-services: 
+services:
   salt-master:
+    build:
+      context: .
+      dockerfile: master.Dockerfile
     container_name: salt-master
     hostname: salt-master
     image: sajalshres/demo-saltstack:master
-    networks: 
+    volumes:
+      - ./salt:/srv/salt:rw
+    networks:
       saltnetwork:
-       aliases: 
-        - salt-master
+        aliases:
+          - salt-master
 
   salt-minion1:
+    build:
+      context: .
+      dockerfile: minion.Dockerfile
     container_name: MINION1
     hostname: MINION1
     image: sajalshres/demo-saltstack:minion
     depends_on:
       - salt-master
-    networks: 
+    networks:
       saltnetwork:
-       aliases: 
-        - MINION1
+        aliases:
+          - MINION1
 
   salt-minion2:
+    build:
+      context: .
+      dockerfile: minion.Dockerfile
     container_name: MINION2
     hostname: MINION2
     image: sajalshres/demo-saltstack:minion
     depends_on:
       - salt-master
-    networks: 
+    networks:
       saltnetwork:
-       aliases: 
-        - MINION2
+        aliases:
+          - MINION2
 
 networks:
   saltnetwork:

@@ -1,0 +1,6 @@
+serverutilities:
+  python:
+    version: "3.9"
+    requirements:
+      - requests==2.28.1
+      - pandas==1.4.4
